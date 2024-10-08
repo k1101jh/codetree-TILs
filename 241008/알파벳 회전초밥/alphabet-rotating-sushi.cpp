@@ -14,16 +14,13 @@ int main() {
     }
 
     int ans = 1;
-    int j = 0;
-    int prev = B[j];
-    for(j = 1; j < B.length(); j++) {
-        if(alp_idx_vec[B[j]] <= prev) {
+    for(int j = 1; j < B.length(); j++) {
+        if(alp_idx_vec[B[j] - 'a'] <= alp_idx_vec[B[j - 1] - 'a']) {
             ans++;
         }
-        prev = B[j];
     }
 
     cout << ans << '\n';
 
     return 0;
-}
+};
