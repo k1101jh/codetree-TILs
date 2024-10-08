@@ -4,8 +4,8 @@ using namespace std;
 
 long long n, k;
 
-int GetNumSmaller(long long a) {
-    int num = 0;
+long long GetNumSmaller(long long a) {
+    long long num = 0;
 
     for(int i=1; i <= n; i++) {
         num += min(n, a / i);
