@@ -21,7 +21,7 @@ int main() {
         cin >> vec[i];
     }
 
-    int left = 0;
+    int left = 1;
     int right = 100000;
 
     int answer = 0;
