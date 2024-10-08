@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int n, m;
@@ -8,9 +9,7 @@ bool valid(vector<int>& vec, int num) {
     int prev = vec[0];
     int num_objects = 1;
     for(int i=1; i < n; i++) {
-        if(vec[i] - prev < num) {
-            continue;
-        } else {
+        if(vec[i] - prev >= num) {
             prev = vec[i];
             num_objects++;
         }
@@ -28,7 +27,9 @@ int main() {
         cin >> vec[i];
     }
 
-    int left = 0;
+    sort(vec.begin(), vec.end());
+
+    int left = 1;
     int right = 1000000000;
     int ans = 0;
 
@@ -44,6 +45,5 @@ int main() {
     }
 
     cout << ans << '\n';
-
     return 0;
 }
