@@ -8,10 +8,10 @@ int main() {
     int n;
     cin >> n;
 
-    vector<int> vec(n, 0);
+    vector<long long> vec(n, 0);
 
-    int max_val = 0;
-    int sum = 0;
+    long long max_val = 0;
+    long long sum = 0;
     for(int i=0; i < n; i++) {
         cin >> vec[i];
         max_val = max(max_val, vec[i]);
