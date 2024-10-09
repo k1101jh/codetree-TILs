@@ -18,6 +18,9 @@ int main() {
 
     for(int i=0; i < N; i++) {
         for(int j=i + 1; j < N; j++) {
+            while(j + 1 < N - 1 && vec[j] == vec[j + 1]) {
+                j++;
+            }
             if(vec[i] > vec[j]) {
                 swap(vec[i], vec[j]);
                 ans++;
