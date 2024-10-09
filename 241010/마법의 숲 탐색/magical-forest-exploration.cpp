@@ -21,10 +21,6 @@ enum Direction {
 int dy[4] = {1, 0, -1, 0};
 int dx[4] = {0, 1, 0, -1};
 
-// 이동 우선순위
-// 남 서 동
-Direction move_priority[3] = {NORTH, WEST, EAST};
-
 // 골렘 생김새
 // 북, 동, 남, 서, 가운데
 pair<int, int> golem[5] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {0, 0}};
@@ -61,7 +57,7 @@ int bfs(pair<int, int> start) {
         int cur_val = q.front().second;
         q.pop();
 
-        min_y = min(min_y, cur.first);        
+        min_y = min(min_y, cur.first);
 
         for(int i=0; i < 4; i++) {
             pair<int, int> next = {cur.first + dy[i], cur.second + dx[i]};
@@ -70,6 +66,7 @@ int bfs(pair<int, int> start) {
             if(visited[next.first][next.second]) continue;
 
             int next_val = forest[next.first][next.second];
+            if(next_val == 0) continue;
             if(next_val != cur_val && !is_exit[cur.first][cur.second]) continue;
 
             visited[next.first][next.second] = true;
@@ -83,7 +80,9 @@ int bfs(pair<int, int> start) {
 void print_forest() {
     for(int i=R - 1; i >= 0; i--) {
         for(int j=0; j < C; j++) {
-            cout << forest[i][j] << ' ';
+            cout << forest[i][j];
+            if(is_exit[i][j]) cout << '_';
+            else cout << ' ';
         }
         cout << '\n';
     }
@@ -121,6 +120,7 @@ int MoveGolem(int id, int c, int d) {
         // 숲 초기화
         forest = vector<vector<int>>(R + 3, vector<int>(C, 0));
         is_exit = vector<vector<bool>>(R + 3, vector<bool>(C, false));
+
         return 0;
     } else {
         // 숲에 골렘 기록
